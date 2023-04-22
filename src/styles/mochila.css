@@ -1,0 +1,11 @@
+.mochila {
+    display: flex;
+    background-color: antiquewhite;
+    flex-direction: column;
+}
+
+.divItem {
+    background-color: blanchedalmond;
+    padding: 10px;
+    margin-top: 5px;
+}
