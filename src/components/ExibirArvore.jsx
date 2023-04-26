@@ -1,4 +1,4 @@
-import { No } from '@/entidades/No';
+import { CalcularMelhorRespostaDoBranchAndBound, No } from '@/entidades/No';
 import { MyContext } from '@/pages';
 import React, { useContext } from 'react';
 import { Tree } from 'react-tree-graph';
@@ -22,8 +22,10 @@ export default function ExibirArvore(props) {
         : {};
 
     function exibirResultadoEsperado() {
-        if (resultado.resultadoEsperado != undefined) {
-            return resultado.resultadoEsperado.map((item) => {
+        debugger
+        const result = new CalcularMelhorRespostaDoBranchAndBound().MelhorResposta(itens, mochila);
+        if (result.resultadoItens != undefined) {
+            return result.resultadoItens.map((item) => {
                 return ` [${item.nome}] `
             })
         }

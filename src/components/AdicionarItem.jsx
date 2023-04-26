@@ -46,9 +46,9 @@ export default function AdicionaItem(props) {
                     placeholder="Peso Maximo"
                     onChange={e => ajustaMochila(e.target.value, mochila.limiteValor)} />
 
-                <input type="number"
+                {/* <input type="number"
                     placeholder="Valor Maximo"
-                    onChange={e => ajustaMochila(mochila.limitePeso, e.target.value)} />
+                    onChange={e => ajustaMochila(mochila.limitePeso, e.target.value)} /> */}
             </div>
         </div>
 
@@ -66,9 +66,9 @@ export default function AdicionaItem(props) {
                     placeholder="Peso"
                     onChange={e => setPeso(e.target.value)} />
 
-                <input type="number"
+                {/* <input type="number"
                     placeholder="Valor"
-                    onChange={e => setValor(e.target.value)} />
+                    onChange={e => setValor(e.target.value)} /> */}
             </div>
 
             <div className="divButton">
