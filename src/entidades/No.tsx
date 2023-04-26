@@ -121,3 +121,46 @@ export class No {
         };
     }
 }
+
+
+export class CalcularMelhorRespostaDoBranchAndBound{
+    resultadoItens: Item[];
+    somaResultado: number;
+
+    esquerda: CalcularMelhorRespostaDoBranchAndBound;
+    direita: CalcularMelhorRespostaDoBranchAndBound;
+    
+    constructor(itens: Item[], somaresultado: number){
+        this.resultadoItens = itens == undefined ? [] : itens
+        this.somaResultado = somaresultado == undefined ? 0 : somaresultado
+    }   
+
+    MelhorResposta(itens: Item[], mochila: Mochila): CalcularMelhorRespostaDoBranchAndBound{
+        const copy = [...this.resultadoItens]
+        this.direita = new CalcularMelhorRespostaDoBranchAndBound(copy, this.somaResultado)
+        
+        if (+itens.length > 1){
+            this.direita = this.direita.MelhorResposta(itens.slice(1), mochila)
+        }
+
+        const item = itens[0]
+        
+        if (+item.peso + +this.somaResultado <= +mochila.limitePeso){
+            this.resultadoItens.push(item);
+            this.somaResultado += +item.peso
+        }
+
+        const copy2 = [...this.resultadoItens]
+        this.esquerda = new CalcularMelhorRespostaDoBranchAndBound(copy2, this.somaResultado)
+       
+        if (+itens.length > 1){
+            this.esquerda = this.esquerda.MelhorResposta(itens.slice(1), mochila)
+        }
+
+        if (+this.esquerda.resultadoItens.length >= +this.direita.resultadoItens.length && +this.esquerda.somaResultado <= +mochila.limitePeso){
+            return this.esquerda;
+        }
+
+        return this.direita;
+    }
+}
