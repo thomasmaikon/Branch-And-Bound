@@ -36,3 +36,18 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+# Algumas observacoes importantes  
+
+* O unico valor importante para a mochila e o peso dela, o outro atributo (valor) seria implementado para validacao tambem, mas com fins de facilitar o entendimento e para validacao apenas o campo (peso) esta sendo considerado no algoritmo.
+
+* A arvore gerada exibe apenas os casos possiveis mediante a limitacao do peso da mochila.
+
+* Alem de considerar apenas o peso para a mochila o algoritmo busca a melhor sequencia em que o maximo de itens pode ser levado, dessa forma, tendo a funcao objetivo de maximizar a quantidade de itens mediante a restricao peso
+
+* O resultado exibido a cima da arvore mostra um dos possiveis melhores casos, visto que haverao casos em que a quantidade de itens mediante a limitacao do peso da mochila sejam iguais pode existir, ou seja, para os mesmos itens inseridos porem em ordens diferentes o algoritmo pode gerar um resultado com diferentes itens mas que atende aos requisitos tanto em peso quanto quantidade, satisfazendo igualmente ao primeiro caso.
+
+# Muito Importante
+Ao inserir os valores e gerar a arvore juntamente aos resultados, CASO queira adicionar mais dados é fundamental que a tela seja recarregada e os valores sejam atualizados se nao os dados atuais gerados na arvore sobrescrevem os anteriores, 
+impossibilitando o entendimento do resultado final.
