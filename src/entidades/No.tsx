@@ -25,8 +25,6 @@ export class Item {
 export class No {
     nomeNo: string;
 
-    resultadoEsperado: Item[] = new Array<Item>;
-    
     item: Item
 
     podarNo: boolean = false;
@@ -56,10 +54,6 @@ export class No {
         return this
     }
 
-    adicionarItemRecorrente(itens: Item[]): No {
-        this.resultadoEsperado = [...this.resultadoEsperado, ...itens]
-        return this
-    }
 
     gerarArvore(itens: Item[], mochila: Mochila): No {
         this.nomeNo = 'raiz';
@@ -82,41 +76,30 @@ export class No {
         this.direita = new No().
             adicionarPeso(this.pesoAtual).
             adicionarValor(this.valorAtual).
-            adicionarItem(item).
-            adicionarItemRecorrente(this.resultadoEsperado);
+            adicionarItem(item)
 
         this.direita.nomeNo = ' - ' + item.nome
 
-        if (qtdItens > 1) {
+        if (+qtdItens > 1) {
             this.direita.ramificar(itens.slice(1), mochila)
         }
 
-        if (sumPesoTotal > +mochila.limitePeso) {
+        if (+sumPesoTotal > +mochila.limitePeso) {
             //branch.PodarNo(true) -- nao vai ter mais nos filhos, entao retorna ele mesmo
             this.podarNo = true;
             return this;
         }
 
-        if (item.peso <= mochila.limitePeso) {
-            this.resultadoEsperado.push(item);
-        }
 
         this.esquerda = new No().
             adicionarPeso(sumPesoTotal).
             adicionarValor(+item.valor + +this.valorAtual).
-            adicionarItem(item).
-            adicionarItemRecorrente(this.resultadoEsperado);
+            adicionarItem(item)
 
         this.esquerda.nomeNo = ' + ' + item.nome
 
-        if (qtdItens > 1) {
+        if (+qtdItens > 1) {
             this.esquerda.ramificar(itens.slice(1), mochila)
-        }
-
-        if (+this.esquerda.resultadoEsperado.length >= +this.direita.resultadoEsperado.length) {
-            this.resultadoEsperado = this.esquerda.resultadoEsperado
-        } else {
-            this.resultadoEsperado = this.direita.resultadoEsperado
         }
 
         return this
